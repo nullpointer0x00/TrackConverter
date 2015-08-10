@@ -1,0 +1,5 @@
+interface TrackWriter {
+	
+	void write()
+
+}
