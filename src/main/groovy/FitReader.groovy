@@ -1,7 +1,4 @@
 
-import java.awt.event.ItemEvent;
-import java.util.Base64.Decoder;
-
 import com.garmin.fit.Activity
 import com.garmin.fit.ActivityMesg;
 import com.garmin.fit.ActivityMesgListener;
@@ -32,13 +29,13 @@ class FitReader implements TrackReader{
 		
 		def mesgBroadcaster = new MesgBroadcaster(decode);
 		def listener = new FitMesgListener(simpleTrack: simpleTrack);
-		def inp = new FileInputStream(input);
-		if(!Decode.checkIntegrity(inp)){
-			println "File integrity failed."
+		def inStream = new FileInputStream(input);
+		if(!Decode.checkIntegrity(inStream)){
+			throw new Exception("File integrity check failed")
 		}
 		mesgBroadcaster.addListener((RecordMesgListener) listener);
-		inp = new FileInputStream(input)
-		mesgBroadcaster.run(inp)
+		inStream = new FileInputStream(input)
+		mesgBroadcaster.run(inStream)
 	}
 
 }

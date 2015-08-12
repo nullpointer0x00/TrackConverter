@@ -17,16 +17,17 @@ class GpxWriter implements TrackWriter{
 		xml.setDoubleQuotes(true)
 		xml.mkp.xmlDeclaration(version: "1.0", encoding: "utf-8")
 		xml.gpx(creator: CREATOR_ATTR, version: VERSION_ATTR, xmlns: XMLNS_ATTR, "xmlns:xsi": XMLNS_XSI_ATTR, "xsi:schemaLocation": XSI_SCHEMA_LOCATION_ATTR) {
-			metadata(){ time() }
+			metadata(){ time((simpleTrack.getTime() != null ? Utils.toZuluTimestamp(simpleTrack.getTime()) : "")) }
 			xml.trk(){
 				name(simpleTrack.getName())
 				trkseg(){
 					simpleTrack.getTrackPoints().each{
-						trkpt(lat: it.getLat(), lon:it.getLon()){
-							if(it.getAlt() != null){
-								ele(it.getAlt())
+						def point = it
+						trkpt(lat: point.getLat(), lon: point.getLon()){
+							if(point.getAlt() != null){
+								ele(point.getAlt())
 							}
-							time(it.getTimeStamp())
+							time(Utils.toZuluTimestamp(point.getTimeStamp()))
 						}
 					}
 				}

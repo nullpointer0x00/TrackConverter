@@ -7,12 +7,12 @@ class FitMesgListener implements RecordMesgListener {
 		SimpleTrack simpleTrack
 		
 		@Override
-		public void onMesg(RecordMesg arg0) {
+		public void onMesg(RecordMesg recordMesg) {
 			//println "Record Mesg " + arg0.getTimestamp().getDate().toGMTString() + " " + convertSemiCircles(arg0.getPositionLat()) + " " + convertSemiCircles(arg0.getPositionLong()) + " " + arg0.getAltitude() + " "
-			def trackPoint = new SimpleTrackPoint(timeStamp: arg0.getTimestamp().getDate().toCalendar(), 
-													lat: Utils.convertSemiCircles(arg0.getPositionLat()),
-													lon: Utils.convertSemiCircles(arg0.getPositionLong()),
-													alt: arg0.getAltitude())
+			def trackPoint = new SimpleTrackPoint(timeStamp: recordMesg.getTimestamp().getDate().toCalendar(), 
+													lat: Utils.convertSemiCircles(recordMesg.getPositionLat()),
+													lon: Utils.convertSemiCircles(recordMesg.getPositionLong()),
+													alt: recordMesg.getAltitude())
 			simpleTrack.getTrackPoints().add(trackPoint)
 			
 		}

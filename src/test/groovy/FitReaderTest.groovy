@@ -4,10 +4,15 @@ import spock.lang.*;
 class FitReaderTest extends Specification{
 
 	def fitFile
+	def fitBadFile
 	
 	def setup() {
-		def path = this.getClass().getClassLoader().getResource("test.FIT").getFile()
+		def classLoader = this.getClass().getClassLoader()
+		def path = classLoader.getResource("test.FIT").getFile()
 		fitFile = new File(path)
+		path = classLoader.getResource("testBad.FIT").getFile()
+		fitBadFile = new File(path)
+		
 	}
 	
 	def "test read of fit file into SimpleTrack"(){
@@ -25,4 +30,39 @@ class FitReaderTest extends Specification{
 			}
 	}
 
+	def "fail integrity check" (){
+		when:
+			def track = new SimpleTrack(trackPoints: new LinkedList<SimpleTrack>())
+			def reader = new FitReader()
+			reader.read(fitBadFile, track)
+		then:
+			thrown(Exception)
+	}
+	
+	def "fail sample track null pointer" (){
+		when:
+			def track = new SimpleTrack(trackPoints: new LinkedList<SimpleTrack>())
+			def reader = new FitReader()
+			reader.read(fitFile, null)
+		then:
+			thrown(NullPointerException)
+	}
+	
+	def "fail sample track null pointer tracklist" (){
+		when:
+			def track = new SimpleTrack()
+			def reader = new FitReader()
+			reader.read(fitFile, track)
+		then:
+			thrown(NullPointerException)
+	}
+	
+	def "fail null file" (){
+		when:
+			def track = new SimpleTrack(trackPoints: new LinkedList<SimpleTrack>())
+			def reader = new FitReader()
+			reader.read(null, track)
+		then:
+			thrown(GroovyRuntimeException)
+	}
 }
