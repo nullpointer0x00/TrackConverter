@@ -1,7 +1,7 @@
 import spock.lang.Specification;
 
 
-class SimpleTrackTest extends Specification{
+class SimpleTrackSpec extends Specification{
 
 	void "test get time on null trackPoint list"(){
 		when:

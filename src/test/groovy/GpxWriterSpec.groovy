@@ -1,7 +1,7 @@
 import spock.lang.Specification;
 
 
-class GpxWriterTest extends Specification{
+class GpxWriterSpec extends Specification{
 
 	def "test gpx writter expect null pointer"(){
 		when:
