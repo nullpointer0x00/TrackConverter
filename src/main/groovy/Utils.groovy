@@ -14,6 +14,12 @@ class Utils {
 		return (Math.PI/180) * degree
 	}
 
+	static Calendar convertZuluTimestamp(String zuluTimestamp){
+		Calendar cal = Calendar.getInstance();
+		SimpleDateFormat sdf = new SimpleDateFormat(ZULU_TIME_FORMAT);
+		cal.setTime(sdf.parse(zuluTimestamp));
+	}
+
 	static String toZuluTimestamp(Calendar cal){
 		final SimpleDateFormat sdf = new SimpleDateFormat(ZULU_TIME_FORMAT)
 		sdf.setTimeZone(TimeZone.getTimeZone("UTC"))

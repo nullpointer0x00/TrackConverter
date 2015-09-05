@@ -1,4 +1,6 @@
+import groovy.transform.Canonical
 
+@Canonical
 class SimpleTrack {
 
 	String name

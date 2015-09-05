@@ -1,4 +1,6 @@
+import groovy.transform.Canonical
 
+@Canonical
 class SimpleTrackPoint {
 	Calendar timeStamp
 	Double lat
