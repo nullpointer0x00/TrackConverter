@@ -1,25 +1,15 @@
 import spock.lang.*;
 
 
-class FitReaderSpec extends Specification {
+class FitReaderSpec extends BaseSpec {
 
-    def fitFile
-    def fitBadFile
-
-    def setup() {
-        def classLoader = this.getClass().getClassLoader()
-        def path = classLoader.getResource("test.FIT").getFile()
-        fitFile = new File(path)
-        path = classLoader.getResource("testBad.FIT").getFile()
-        fitBadFile = new File(path)
-
-
-    }
 
     def "test read of fit file into SimpleTrack"() {
+
         setup:
         def track = new SimpleTrack(trackPoints: new LinkedList<SimpleTrack>())
         def reader = new FitReader()
+        def fitFile = getTestResourceFile("test.FIT")
 
         when:
         reader.read(fitFile, track)
@@ -35,38 +25,49 @@ class FitReaderSpec extends Specification {
     }
 
     def "fail integrity check"() {
+
         when:
         def track = new SimpleTrack(trackPoints: new LinkedList<SimpleTrack>())
         def reader = new FitReader()
-        reader.read(fitBadFile, track)
+        def fitFile = getTestResourceFile("testBad.FIT")
+        reader.read(fitFile, track)
+
         then:
         thrown(Exception)
     }
 
     def "fail sample track null pointer tracklist"() {
+
         when:
         def track = new SimpleTrack()
         def reader = new FitReader()
+        def fitFile = getTestResourceFile("test.FIT")
         reader.read(fitFile, track)
+
         then:
         thrown(NullPointerException)
     }
 
     def "fail sample track null pointer"() {
+
         when:
         def track = new SimpleTrack(trackPoints: new LinkedList<SimpleTrack>())
         def reader = new FitReader()
+        def fitFile = getTestResourceFile("test.FIT")
         reader.read(fitFile, null)
+
         then:
         thrown(NullPointerException)
 
     }
 
     def "fail null file"() {
+
         when:
         def track = new SimpleTrack(trackPoints: new LinkedList<SimpleTrack>())
         def reader = new FitReader()
         reader.read(null, track)
+
         then:
         thrown(GroovyRuntimeException)
     }
