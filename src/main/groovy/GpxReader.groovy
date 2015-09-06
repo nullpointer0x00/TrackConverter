@@ -13,6 +13,7 @@ class GpxReader implements TrackReader {
             def trackPoint = new SimpleTrackPoint(
                     lat: point.@lat.text() as Double,
                     lon: point.@lon.text() as Double,
+                    timeStamp: Utils.convertZuluTimestamp(point.time.text()),
                     alt: point.ele.text() as Double)
             simpleTrack.getTrackPoints().add(trackPoint)
         }

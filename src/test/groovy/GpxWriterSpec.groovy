@@ -1,4 +1,5 @@
 import spock.lang.Specification;
+import org.joda.time.DateTime
 
 
 class GpxWriterSpec extends Specification{
@@ -24,7 +25,7 @@ class GpxWriterSpec extends Specification{
 	def "test gpx writter 1 item list"(){
 		when:
 			def simpleTrack = new SimpleTrack(trackPoints: new LinkedList<SimpleTrackPoint>())
-			def now = Calendar.getInstance()
+			def now = DateTime.now()
 			def track = new SimpleTrackPoint(alt: null, lat: 1.0, lon: -1.0, timeStamp: now)
 			simpleTrack.getTrackPoints().add(track)
 			def gpxWriter = new GpxWriter(simpleTrack: simpleTrack)
@@ -36,10 +37,10 @@ class GpxWriterSpec extends Specification{
 	def "test gpx writter 2 item list"(){
 		when:
 			def simpleTrack = new SimpleTrack(trackPoints: new LinkedList<SimpleTrackPoint>())
-			def now = Calendar.getInstance()
+			def now = DateTime.now()
 			def track = new SimpleTrackPoint(alt: null, lat: 1.0, lon: -1.0, timeStamp: now)
 			simpleTrack.getTrackPoints().add(track)
-			now = Calendar.getInstance()
+			now = DateTime.now()
 			track = new SimpleTrackPoint(alt: null, lat: 2.0, lon: -2.0, timeStamp: now)
 			simpleTrack.getTrackPoints().add(track)
 			def gpxWriter = new GpxWriter(simpleTrack: simpleTrack)

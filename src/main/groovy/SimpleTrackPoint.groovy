@@ -1,8 +1,8 @@
 import groovy.transform.Canonical
-
+import org.joda.time.DateTime
 @Canonical
 class SimpleTrackPoint {
-	Calendar timeStamp
+	DateTime timeStamp
 	Double lat
 	Double lon
 	Double alt

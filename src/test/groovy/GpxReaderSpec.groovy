@@ -1,5 +1,6 @@
 import spock.lang.Specification
 
+
 class GpxReaderSpec extends BaseSpec{
 
     def "read gpx file"(){
@@ -13,6 +14,9 @@ class GpxReaderSpec extends BaseSpec{
         then:
         tracks.name == "Afternoon Ride"
         tracks.trackPoints?.size() == 5
+        tracks.trackPoints.each{
+            assert it.timeStamp instanceof org.joda.time.DateTime
+        }
     }
 
 }

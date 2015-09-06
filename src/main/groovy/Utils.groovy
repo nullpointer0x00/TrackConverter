@@ -1,10 +1,13 @@
-import java.text.SimpleDateFormat
-import java.util.TimeZone
+import org.joda.time.DateTimeZone
+import org.joda.time.format.DateTimeFormat
+import org.joda.time.format.DateTimeFormat
+import org.joda.time.DateTime
+import org.joda.time.format.DateTimeFormatter
 
 
 class Utils {
 	
-	static final String ZULU_TIME_FORMAT = "yyyy:MM:dd'T'hh:mm:ss'Z'"
+	static final String ZULU_TIME_FORMAT = "yyyy-MM-dd'T'HH:mm:ss'Z'"
 	
 	static double convertSemiCircles(int i){
 		return i * (180 / (2 ** 31))
@@ -14,16 +17,23 @@ class Utils {
 		return (Math.PI/180) * degree
 	}
 
-	static Calendar convertZuluTimestamp(String zuluTimestamp){
-		Calendar cal = Calendar.getInstance();
-		SimpleDateFormat sdf = new SimpleDateFormat(ZULU_TIME_FORMAT);
-		cal.setTime(sdf.parse(zuluTimestamp));
+	static DateTime convertZuluTimestamp(String zuluTimestamp){
+		DateTimeFormatter dtf = DateTimeFormat.forPattern(ZULU_TIME_FORMAT);
+		dtf.withZoneUTC().parseDateTime(zuluTimestamp);
 	}
 
-	static String toZuluTimestamp(Calendar cal){
-		final SimpleDateFormat sdf = new SimpleDateFormat(ZULU_TIME_FORMAT)
-		sdf.setTimeZone(TimeZone.getTimeZone("UTC"))
-		sdf.format(cal.getTime())
+	static String toZuluTimestamp(def time){
+		DateTime dateTime
+		if(time instanceof Date){
+			dateTime = new DateTime(time as Date)
+		} else if (time instanceof Calendar){
+			dateTime = new DateTime(time as Calendar)
+		} else if (time instanceof DateTime){
+			dateTime = time
+		} else {
+			return null
+		}
+		dateTime.withZone(DateTimeZone.UTC).toString(ZULU_TIME_FORMAT)
 	}
 
 	static Double distanceInMi(double lat1, double lon1, double lat2, double lon2){

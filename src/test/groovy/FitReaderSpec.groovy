@@ -3,7 +3,6 @@ import spock.lang.*;
 
 class FitReaderSpec extends BaseSpec {
 
-
     def "test read of fit file into SimpleTrack"() {
 
         setup:

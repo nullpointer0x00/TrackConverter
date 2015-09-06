@@ -22,7 +22,7 @@ class SimpleTrackSpec extends Specification{
 	void "test get time on trackPoint list"(){
 		when:
 			def simpleTrack = new SimpleTrack(trackPoints: new LinkedList<SimpleTrackPoint>())
-			def timestamp = Calendar.getInstance()
+			def timestamp = new org.joda.time.DateTime()
 			def trackPoint = new SimpleTrackPoint(timeStamp: timestamp)
 			simpleTrack.getTrackPoints().add(trackPoint)
 			def time = simpleTrack.getTime()
