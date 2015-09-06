@@ -1,3 +1,8 @@
+package com.beatnikstree.trackconverter
+
+import com.beatnikstree.trackconverter.domain.SimpleTrack
+import com.beatnikstree.trackconverter.reader.TrackReader
+import com.beatnikstree.trackconverter.writer.TrackWriter
 
 class Converter {
 

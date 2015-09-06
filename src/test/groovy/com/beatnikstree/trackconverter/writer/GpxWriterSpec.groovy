@@ -1,3 +1,8 @@
+package com.beatnikstree.trackconverter.writer
+
+import com.beatnikstree.trackconverter.domain.SimpleTrack
+import com.beatnikstree.trackconverter.domain.SimpleTrackPoint
+import com.beatnikstree.trackconverter.writer.GpxWriter
 import spock.lang.Specification;
 import org.joda.time.DateTime
 

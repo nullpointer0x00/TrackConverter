@@ -1,3 +1,6 @@
+package com.beatnikstree.trackconverter
+
+import com.beatnikstree.trackconverter.Main
 import spock.lang.Specification
 import spock.lang.Unroll
 
@@ -22,7 +25,7 @@ class MainSpec extends Specification {
 
 //    def "validate src path"(){
 //        setup:
-//        def result = Main.validateSourcePath(arguments)
+//        def result = com.beatnikstree.trackconverter.Main.validateSourcePath(arguments)
 //        expect:
 //        result = expected
 //        where:

@@ -1,3 +1,5 @@
+package com.beatnikstree.trackconverter.domain
+
 import groovy.transform.Canonical
 import org.joda.time.DateTime
 @Canonical

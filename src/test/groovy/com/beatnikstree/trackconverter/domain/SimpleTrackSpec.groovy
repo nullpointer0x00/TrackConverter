@@ -1,3 +1,7 @@
+package com.beatnikstree.trackconverter.domain
+
+import com.beatnikstree.trackconverter.domain.SimpleTrack
+import com.beatnikstree.trackconverter.domain.SimpleTrackPoint
 import spock.lang.Specification;
 
 

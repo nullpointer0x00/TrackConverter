@@ -1,9 +1,12 @@
-import spock.lang.*;
+package com.beatnikstree.trackconverter.reader
 
+import com.beatnikstree.trackconverter.BaseSpec
+import com.beatnikstree.trackconverter.domain.SimpleTrack
+import com.beatnikstree.trackconverter.reader.FitReader
 
 class FitReaderSpec extends BaseSpec {
 
-    def "test read of fit file into SimpleTrack"() {
+    def "test read of fit file into com.beatnikstree.trackconverter.domain.SimpleTrack"() {
 
         setup:
         def track = new SimpleTrack(trackPoints: new LinkedList<SimpleTrack>())

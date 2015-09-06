@@ -1,3 +1,7 @@
+package com.beatnikstree.trackconverter.writer
+
+import com.beatnikstree.trackconverter.domain.SimpleTrack
+import com.beatnikstree.trackconverter.utils.Utils
 import groovy.xml.MarkupBuilder
 
 

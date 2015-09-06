@@ -1,3 +1,6 @@
+package com.beatnikstree.trackconverter.utils
+
+import com.beatnikstree.trackconverter.utils.Utils
 import org.joda.time.DateTime
 import spock.lang.*;
 

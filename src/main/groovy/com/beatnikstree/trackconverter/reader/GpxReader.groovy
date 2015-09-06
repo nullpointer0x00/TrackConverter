@@ -1,7 +1,8 @@
-import com.garmin.fit.Decode
-import com.garmin.fit.MesgBroadcaster
-import com.garmin.fit.RecordMesgListener
-import com.garmin.fit.SegmentPointMesg
+package com.beatnikstree.trackconverter.reader
+
+import com.beatnikstree.trackconverter.domain.SimpleTrack
+import com.beatnikstree.trackconverter.domain.SimpleTrackPoint
+import com.beatnikstree.trackconverter.utils.Utils
 
 class GpxReader implements TrackReader {
 

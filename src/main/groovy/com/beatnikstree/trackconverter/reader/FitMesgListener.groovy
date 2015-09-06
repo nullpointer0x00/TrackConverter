@@ -1,3 +1,8 @@
+package com.beatnikstree.trackconverter.reader
+
+import com.beatnikstree.trackconverter.domain.SimpleTrack
+import com.beatnikstree.trackconverter.domain.SimpleTrackPoint
+import com.beatnikstree.trackconverter.utils.Utils
 import com.garmin.fit.RecordMesg;
 import com.garmin.fit.RecordMesgListener;
 

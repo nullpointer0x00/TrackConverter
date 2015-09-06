@@ -1,3 +1,5 @@
+package com.beatnikstree.trackconverter
+
 import spock.lang.Specification
 
 class BaseSpec extends Specification {
