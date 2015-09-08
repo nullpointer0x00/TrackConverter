@@ -1,15 +1,21 @@
 package com.beatnikstree.trackconverter
 
+import com.beatnikstree.trackconverter.reader.FitReader
+import com.beatnikstree.trackconverter.writer.GpxWriter
+
 class Main {
 
-
 	static void main(String[] args){
-		if(validateArguments(args)){
-			//process
+		def options = validateArguments(args)
+		if (options?.c && options.c.equalsIgnoreCase("fitToGpx")) {
+			if (validatePath(options.arguments()[0]) && validatePath(options.arguments()[1])) {
+				convertFitToGpx(options.arguments()[0], "")
+			}
+
 		}
 	}
 
-	static boolean validateArguments(String[] args){
+	static OptionAccessor validateArguments(String[] args){
 		boolean valid = true
 		CliBuilder cli = new CliBuilder(usage: "[options] [targets]")
 		cli.with{
@@ -20,11 +26,12 @@ class Main {
 			cli.usage()
 			valid = false
 		}
-		return valid
+		return (valid ? options : null)
 	}
 
-	static boolean validateSourcePath(String path){
-		def file = new File(path)
-		return file.exists() && file.exists() && file.readable()
+	static void convertFitToGpx(String src, String dest){
+		Converter converter = new Converter(reader:  new FitReader(), writer: new GpxWriter())
+		converter.inputFile = new File(src)
+		converter.convert()
 	}
 }

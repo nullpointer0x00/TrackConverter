@@ -9,7 +9,8 @@ class Converter {
 	File inputFile
 	TrackReader reader
 	TrackWriter writer
-	SimpleTrack simpleTrack
+
+	private SimpleTrack simpleTrack
 
 	void convert(){
 		if(reader == null){
@@ -21,12 +22,9 @@ class Converter {
 			println "writer cannot be null"
 			return
 		}
-
 		simpleTrack = new SimpleTrack(trackPoints: new LinkedList<SimpleTrack>())
-
-
 		reader.read(inputFile, simpleTrack)
-		writer.write()
+		writer.write(simpleTrack)
 	}
 
 }

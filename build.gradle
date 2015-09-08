@@ -1,13 +1,13 @@
 apply plugin: 'groovy'
 apply plugin: 'java'
 apply plugin: 'eclipse'
+apply plugin:'application'
+mainClassName = 'com.beatnikstree.trackconverter.Main'
 
 sourceCompatibility = 1.5
-version = '1.0'
 jar {
     manifest {
-        attributes 'Implementation-Title': 'Gradle Quickstart',
-                   'Implementation-Version': version
+        attributes 'Main-Class': 'com.beatnikstree.trackconverter.Main'
     }
 }
 
@@ -30,7 +30,9 @@ dependencies {
 }
 
 test {
-    systemProperties 'property': 'value'
+    systemProperty "google.api.key", System.getProperty("google.api.key")
+    systemProperty "ele.service.enabled" , System.getProperty("ele.service.enabled")
+
 }
 
 uploadArchives {

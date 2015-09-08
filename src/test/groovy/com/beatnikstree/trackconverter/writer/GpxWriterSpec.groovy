@@ -21,8 +21,8 @@ class GpxWriterSpec extends Specification{
 	def "test gpx writter empty list"(){
 		when:
 			def simpleTrack = new SimpleTrack(trackPoints: new LinkedList<SimpleTrackPoint>())
-			def gpxWriter = new GpxWriter(simpleTrack: simpleTrack)
-			gpxWriter.write()
+			def gpxWriter = new GpxWriter()
+			gpxWriter.write(simpleTrack)
 		then:
 			1 == 1
 	}
@@ -33,8 +33,8 @@ class GpxWriterSpec extends Specification{
 			def now = DateTime.now()
 			def track = new SimpleTrackPoint(alt: null, lat: 1.0, lon: -1.0, timeStamp: now)
 			simpleTrack.getTrackPoints().add(track)
-			def gpxWriter = new GpxWriter(simpleTrack: simpleTrack)
-			gpxWriter.write()
+			def gpxWriter = new GpxWriter()
+			gpxWriter.write(simpleTrack)
 		then:
 			1 == 1
 	}
@@ -48,8 +48,8 @@ class GpxWriterSpec extends Specification{
 			now = DateTime.now()
 			track = new SimpleTrackPoint(alt: null, lat: 2.0, lon: -2.0, timeStamp: now)
 			simpleTrack.getTrackPoints().add(track)
-			def gpxWriter = new GpxWriter(simpleTrack: simpleTrack)
-			gpxWriter.write()
+			def gpxWriter = new GpxWriter()
+			gpxWriter.write(simpleTrack)
 		then:
 			1 == 1
 	}

@@ -9,9 +9,7 @@ import com.garmin.fit.SegmentPointMesg
 class FitReader implements TrackReader{
 	
 	Decode decode = new Decode()
-	File fitFile
-	List<SegmentPointMesg>  points
-	
+
 	void read(File input, SimpleTrack simpleTrack) {
 		
 		def mesgBroadcaster = new MesgBroadcaster(decode);
